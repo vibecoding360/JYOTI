@@ -1,120 +1,1349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jyoti Sharma - My Portfolio</title>
+    <title>Dr. Jyoti Sharma | MBBS, MD - Premier Medical & Family Clinic</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts: Inter & Plus Jakarta Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        medical: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            200: '#99f6e4',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            700: '#0f766e',
+                            800: '#115e59',
+                            900: '#134e4a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* Website ka Design (CSS) */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #fdfbfb;
-            color: #333;
+            font-family: 'Inter', sans-serif;
         }
-        
-        header {
-            background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
-            color: white;
-            padding: 40px 20px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Plus Jakarta Sans', sans-serif;
         }
-
-        header h1 {
-            margin: 0;
-            font-size: 2.5em;
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
         }
-
-        header p {
-            font-size: 1.2em;
-            margin-top: 10px;
-            font-weight: 500;
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.85);
         }
-
-        .container {
-            max-width: 800px;
-            margin: 30px auto;
-            padding: 20px 30px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        @keyframes floatSlow {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
         }
-
-        h2 {
-            color: #a18cd1;
-            border-bottom: 2px solid #fbc2eb;
-            padding-bottom: 5px;
-            display: inline-block;
+        .animate-float {
+            animation: floatSlow 4s ease-in-out infinite;
         }
-
-        p {
-            line-height: 1.7;
-            font-size: 1.1em;
-        }
-
-        .subjects {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            margin-top: 20px;
-        }
-
-        .subject-badge {
-            background-color: #fdfbfb;
-            color: #a18cd1;
-            padding: 10px 20px;
-            border-radius: 30px;
-            border: 2px solid #fbc2eb;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-
-        .subject-badge:hover {
-            background-color: #fbc2eb;
-            color: white;
-            cursor: pointer;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 40px;
-            padding: 20px;
-            color: #888;
-            font-size: 0.9em;
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            #printableSlip, #printableSlip * {
+                visibility: visible;
+            }
+            #printableSlip {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                box-shadow: none !important;
+            }
         }
     </style>
 </head>
-<body>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 transition-colors duration-300">
 
-    <!-- Header Section -->
-    <header>
-        <h1>Jyoti Sharma</h1>
-        <p>Class 10th Student | Learner & Dreamer</p>
-    </header>
+    <!-- Toast Notification Container -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none px-4 sm:px-0"></div>
 
-    <!-- Main Content Section -->
-    <div class="container">
-        <h2>Mera Parichay (About Me)</h2>
-        <p>Hello! Mera naam <strong>Jyoti Sharma</strong> hai. Mai abhi Class 10th me padhti hu. Mujhe nayi cheezein seekhna bahut pasand hai aur yeh meri pehli website hai! Mai apne board exams ke liye mehnat kar rahi hu aur hamesha kuch naya explore karne ki koshish karti hu.</p>
-
-        <h2>Mere Lakshya (My Goals)</h2>
-        <p>Mera focus abhi apni padhai par hai. Mai Class 10th boards me bohot achhe marks score karna chahti hu. Uske alawa mujhe technology aur nayi skills (jaise coding) ke baare me janne me bohot interest hai.</p>
-
-        <h2>Mere Pasandida Subjects</h2>
-        <div class="subjects">
-            <span class="subject-badge">Mathematics 📐</span>
-            <span class="subject-badge">Science 🔬</span>
-            <span class="subject-badge">English 📚</span>
-            <span class="subject-badge">Computer 💻</span>
+    <!-- 1. TOP EMERGENCY & UTILITY BAR -->
+    <div class="bg-teal-900 text-teal-50 text-xs sm:text-sm py-2.5 px-4 border-b border-teal-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex flex-wrap items-center gap-4">
+                <span class="inline-flex items-center gap-1.5 font-medium text-rose-300">
+                    <span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
+                    <i class="fa-solid fa-truck-medical"></i>
+                    <span data-i18n="emergencyText">24/7 Emergency Helpline: +91 98765 43210</span>
+                </span>
+                <span class="hidden md:inline-flex items-center gap-1.5 text-teal-200">
+                    <i class="fa-regular fa-clock"></i>
+                    <span data-i18n="timingsText">Mon - Sat: 9:00 AM - 2:00 PM & 5:00 PM - 8:30 PM</span>
+                </span>
+            </div>
+            <div class="flex items-center gap-3 ml-auto">
+                <!-- Language Switcher -->
+                <button id="langToggleBtn" onclick="toggleLanguage()" class="px-2.5 py-1 rounded-md bg-teal-800 hover:bg-teal-700 text-teal-100 font-medium transition flex items-center gap-1.5 border border-teal-700">
+                    <i class="fa-solid fa-language"></i>
+                    <span id="langLabel">Hinglish / हिंदी</span>
+                </button>
+                <!-- Dark Mode Toggle -->
+                <button id="themeToggleBtn" onclick="toggleDarkMode()" class="p-1.5 px-2.5 rounded-md bg-teal-800 hover:bg-teal-700 text-amber-300 transition border border-teal-700" title="Toggle Dark/Light Theme">
+                    <i id="themeIcon" class="fa-solid fa-moon"></i>
+                </button>
+            </div>
         </div>
     </div>
 
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; 2026 Jyoti Sharma. Yeh website maine khud banayi hai! ✨</p>
+    <!-- 2. STICKY NAVIGATION BAR -->
+    <header class="sticky top-0 z-40 glass-card border-b border-slate-200/80 dark:border-slate-800 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#home" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-teal-500 to-emerald-600 flex items-center justify-center text-white shadow-md shadow-teal-500/20 group-hover:scale-105 transition">
+                    <i class="fa-solid fa-stethoscope text-xl"></i>
+                </div>
+                <div>
+                    <div class="flex items-center gap-1.5">
+                        <span class="font-heading font-bold text-lg sm:text-xl tracking-tight text-slate-900 dark:text-white">Dr. Jyoti Sharma</span>
+                        <i class="fa-solid fa-circle-check text-teal-500 text-sm" title="Verified Medical Practitioner"></i>
+                    </div>
+                    <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">MBBS, MD (General Medicine) • Reg #48291</p>
+                </div>
+            </a>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#home" class="hover:text-teal-600 dark:hover:text-teal-400 transition" data-i18n="navHome">Home</a>
+                <a href="#about" class="hover:text-teal-600 dark:hover:text-teal-400 transition" data-i18n="navAbout">About Doctor</a>
+                <a href="#services" class="hover:text-teal-600 dark:hover:text-teal-400 transition" data-i18n="navServices">Specialties</a>
+                <a href="#health-tools" class="hover:text-teal-600 dark:hover:text-teal-400 transition" data-i18n="navTools">Health Calculators</a>
+                <a href="#prescription-tracker" class="hover:text-teal-600 dark:hover:text-teal-400 transition" data-i18n="navRx">Track Report/Rx</a>
+                <a href="#reviews" class="hover:text-teal-600 dark:hover:text-teal-400 transition" data-i18n="navReviews">Reviews</a>
+            </nav>
+
+            <!-- Action CTA -->
+            <div class="flex items-center gap-3">
+                <a href="#appointment" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-semibold px-5 py-2.5 rounded-xl shadow-md shadow-teal-500/20 transition transform active:scale-95 text-sm">
+                    <i class="fa-regular fa-calendar-check"></i>
+                    <span data-i18n="bookBtn">Book Appointment</span>
+                </a>
+                <!-- Mobile Hamburger -->
+                <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-200">
+                    <i id="mobileMenuIcon" class="fa-solid fa-bars text-lg"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 px-4 pt-3 pb-5 space-y-2">
+            <a href="#home" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-800 font-medium">Home</a>
+            <a href="#about" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-800 font-medium">About Dr. Jyoti Sharma</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-800 font-medium">Medical Specialties</a>
+            <a href="#health-tools" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-800 font-medium">Health Tools & Symptom Checker</a>
+            <a href="#prescription-tracker" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-800 font-medium">Digital Prescription Tracker</a>
+            <a href="#reviews" onclick="toggleMobileMenu()" class="block px-3 py-2 rounded-lg hover:bg-teal-50 dark:hover:bg-slate-800 font-medium">Patient Testimonials</a>
+            <a href="#appointment" onclick="toggleMobileMenu()" class="block text-center mt-3 bg-teal-600 text-white font-semibold py-2.5 rounded-xl">Book Appointment Now</a>
+        </div>
+    </header>
+
+    <!-- 3. HERO SECTION -->
+    <section id="home" class="relative overflow-hidden py-12 sm:py-20 bg-gradient-to-b from-teal-50/70 via-white to-slate-50 dark:from-slate-900 dark:via-slate-950 dark:to-slate-950">
+        <!-- Decorative Background Blobs -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Column: Hero Content -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-100/80 dark:bg-teal-950/90 border border-teal-300/60 dark:border-teal-800 text-teal-800 dark:text-teal-300 text-xs sm:text-sm font-semibold">
+                        <span class="w-2 h-2 rounded-full bg-teal-500"></span>
+                        <span data-i18n="heroBadge">Gold Medalist Physician • Compassionate Family Healthcare</span>
+                    </div>
+
+                    <h1 class="font-heading text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white leading-tight">
+                        <span data-i18n="heroTitle1">Your Trusted Partner in</span>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-500 block mt-1" data-i18n="heroTitle2">Complete Health & Wellness</span>
+                    </h1>
+
+                    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed" data-i18n="heroDesc">
+                        Namaste! Main <strong>Dr. Jyoti Sharma</strong> (MBBS, MD) hu. Hamare clinic ka lakshya har patient ko sahi diagnosis, modern treatment aur parivarik dekhbhal dena hai—chahe aap clinic aayein ya ghar baithe video consultation lein.
+                    </p>
+
+                    <!-- Action Buttons -->
+                    <div class="flex flex-wrap gap-4 pt-2">
+                        <a href="#appointment" onclick="setConsultationType('In-Clinic Visit')" class="inline-flex items-center gap-2.5 bg-teal-600 hover:bg-teal-700 text-white font-semibold px-6 py-3.5 rounded-xl shadow-lg shadow-teal-600/25 transition transform hover:-translate-y-0.5">
+                            <i class="fa-solid fa-hospital-user"></i>
+                            <span data-i18n="btnClinicVisit">Book Clinic Visit</span>
+                        </a>
+                        <a href="#appointment" onclick="setConsultationType('Video Consultation')" class="inline-flex items-center gap-2.5 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-700 font-semibold px-6 py-3.5 rounded-xl shadow-sm transition">
+                            <i class="fa-solid fa-video text-teal-600"></i>
+                            <span data-i18n="btnVideoConsult">Online Video Consult</span>
+                        </a>
+                        <a href="#health-tools" class="inline-flex items-center gap-2 text-teal-700 dark:text-teal-400 font-semibold px-4 py-3.5 hover:underline">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                            <span data-i18n="btnCheckSymptoms">Free Symptom Triage</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Key Highlights / Stats -->
+                    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-slate-200/80 dark:border-slate-800">
+                        <div class="p-3 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800 shadow-sm">
+                            <p class="text-2xl sm:text-3xl font-extrabold text-teal-600">12+</p>
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Years Experience</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800 shadow-sm">
+                            <p class="text-2xl sm:text-3xl font-extrabold text-emerald-600">15,000+</p>
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Happy Patients</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800 shadow-sm">
+                            <p class="text-2xl sm:text-3xl font-extrabold text-sky-600">4.9 <i class="fa-solid fa-star text-amber-400 text-lg"></i></p>
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Patient Rating</p>
+                        </div>
+                        <div class="p-3 rounded-xl bg-white/80 dark:bg-slate-900/80 border border-slate-200/60 dark:border-slate-800 shadow-sm">
+                            <p class="text-2xl sm:text-3xl font-extrabold text-rose-600">24/7</p>
+                            <p class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Tele-Care Support</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Interactive Doctor Profile Card -->
+                <div class="lg:col-span-5">
+                    <div class="relative mx-auto max-w-md">
+                        <!-- Floating Status Pill -->
+                        <div class="animate-float absolute -top-4 -left-4 z-20 bg-white dark:bg-slate-800 px-4 py-2 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 flex items-center gap-2.5">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                            <div>
+                                <p class="text-xs font-bold text-slate-800 dark:text-white">OPD Available Today</p>
+                                <p class="text-[11px] text-slate-500 dark:text-slate-400">Next Slot: Within 45 Mins</p>
+                            </div>
+                        </div>
+
+                        <!-- Main Profile Card -->
+                        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl border border-slate-200/80 dark:border-slate-800 overflow-hidden">
+                            <!-- Card Top Banner with Doctor Avatar SVG Illustration -->
+                            <div class="bg-gradient-to-br from-teal-600 via-teal-700 to-emerald-800 p-6 pt-10 text-center relative">
+                                <div class="w-36 h-36 mx-auto rounded-full bg-white p-1.5 shadow-xl relative">
+                                    <!-- Professional Female Doctor SVG Illustration -->
+                                    <svg viewBox="0 0 200 200" class="w-full h-full rounded-full bg-teal-50">
+                                        <circle cx="100" cy="100" r="98" fill="#e6fffa"/>
+                                        <!-- Hair back -->
+                                        <path d="M55 75 C50 120, 55 155, 65 170 L135 170 C145 155, 150 120, 145 75 Z" fill="#1e293b"/>
+                                        <!-- Coat -->
+                                        <path d="M35 195 C35 148, 65 135, 100 135 C135 135, 165 148, 165 195 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+                                        <!-- Inner Teal Scrub/Top -->
+                                        <polygon points="85,135 115,135 100,175" fill="#0d9488"/>
+                                        <!-- Neck -->
+                                        <rect x="88" y="112" width="24" height="28" rx="10" fill="#fbd38d"/>
+                                        <!-- Face -->
+                                        <ellipse cx="100" cy="84" rx="34" ry="38" fill="#fce7c8"/>
+                                        <!-- Hair Front -->
+                                        <path d="M65 82 C65 50, 95 42, 115 48 C130 52, 136 68, 135 82 C125 65, 108 58, 90 62 C76 64, 68 72, 65 82 Z" fill="#1e293b"/>
+                                        <!-- Glasses -->
+                                        <rect x="74" y="74" width="20" height="14" rx="4" fill="none" stroke="#0f766e" stroke-width="2.5"/>
+                                        <rect x="106" y="74" width="20" height="14" rx="4" fill="none" stroke="#0f766e" stroke-width="2.5"/>
+                                        <line x1="94" y1="80" x2="106" y2="80" stroke="#0f766e" stroke-width="2.5"/>
+                                        <!-- Eyes -->
+                                        <circle cx="84" cy="81" r="2.8" fill="#1e293b"/>
+                                        <circle cx="116" cy="81" r="2.8" fill="#1e293b"/>
+                                        <!-- Warm Smile -->
+                                        <path d="M89 101 Q100 110 111 101" fill="none" stroke="#e11d48" stroke-width="3" stroke-linecap="round"/>
+                                        <!-- Stethoscope around neck -->
+                                        <path d="M76 136 C72 162, 85 175, 100 175 C115 175, 128 162, 124 136" fill="none" stroke="#334155" stroke-width="4.5" stroke-linecap="round"/>
+                                        <circle cx="122" cy="168" r="7" fill="#0d9488" stroke="#ffffff" stroke-width="2"/>
+                                    </svg>
+                                    <span class="absolute bottom-1 right-1 bg-emerald-500 text-white w-8 h-8 rounded-full flex items-center justify-center border-2 border-white shadow" title="Verified MD Doctor">
+                                        <i class="fa-solid fa-user-doctor text-xs"></i>
+                                    </span>
+                                </div>
+
+                                <h2 class="mt-4 text-2xl font-bold text-white">Dr. Jyoti Sharma</h2>
+                                <p class="text-teal-100 text-sm font-medium">MBBS, MD (Internal Medicine) • Fellowship in Diabetology</p>
+                                <div class="mt-3 inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-3 py-1 rounded-full text-xs text-white">
+                                    <i class="fa-solid fa-award text-amber-300"></i>
+                                    <span>Senior Consultant & Family Physician</span>
+                                </div>
+                            </div>
+
+                            <!-- Card Details Body -->
+                            <div class="p-6 space-y-4">
+                                <div class="grid grid-cols-2 gap-3 text-xs sm:text-sm">
+                                    <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70">
+                                        <p class="text-slate-400 text-xs">Consultation Fee</p>
+                                        <p class="font-bold text-slate-800 dark:text-white text-base">₹500 <span class="text-xs font-normal text-emerald-600">(Free 7-Day Followup)</span></p>
+                                    </div>
+                                    <div class="p-3 rounded-xl bg-slate-50 dark:bg-slate-800/70">
+                                        <p class="text-slate-400 text-xs">Languages Spoken</p>
+                                        <p class="font-bold text-slate-800 dark:text-white">Hindi, English</p>
+                                    </div>
+                                </div>
+
+                                <div class="space-y-2 text-sm text-slate-600 dark:text-slate-300">
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="fa-solid fa-building-columns text-teal-600 w-5 text-center"></i>
+                                        <span>Ex-Senior Resident, AIIMS & City Care Hospital</span>
+                                    </div>
+                                    <div class="flex items-center gap-2.5">
+                                        <i class="fa-solid fa-location-dot text-teal-600 w-5 text-center"></i>
+                                        <span>Jyoti Multispeciality Clinic, Civil Lines, Main Road</span>
+                                    </div>
+                                </div>
+
+                                <div class="pt-2 flex gap-2">
+                                    <a href="#appointment" class="flex-1 bg-teal-600 hover:bg-teal-700 text-white text-center font-semibold py-2.5 rounded-xl text-sm transition">
+                                        Instant Slot Booking
+                                    </a>
+                                    <button onclick="openPrescriptionModal()" class="px-4 py-2.5 rounded-xl border border-teal-600 text-teal-600 dark:text-teal-400 hover:bg-teal-50 dark:hover:bg-slate-800 font-semibold text-sm transition" title="View Sample E-Prescription">
+                                        <i class="fa-solid fa-file-prescription"></i> Sample Rx
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. INTERACTIVE APPOINTMENT BOOKING SYSTEM -->
+    <section id="appointment" class="py-16 bg-white dark:bg-slate-900 border-y border-slate-200/80 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-teal-600 dark:text-teal-400 font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-teal-50 dark:bg-teal-950/60">Zero Waiting Time</span>
+                <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white" data-i18n="bookingHeading">Book Your Appointment with Dr. Jyoti Sharma</h2>
+                <p class="mt-2 text-slate-600 dark:text-slate-400" data-i18n="bookingSub">Apni suvidha ke anusar Clinic Visit ya Video Consultation chunein aur turant Confirm Token Slip prapt karein.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                <!-- Booking Form Column -->
+                <div class="lg:col-span-7 bg-slate-50 dark:bg-slate-800/50 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <form id="appointmentForm" onsubmit="handleAppointmentSubmit(event)" class="space-y-6">
+                        
+                        <!-- Step 1: Consultation Mode -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-2">1. Select Consultation Mode</label>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <button type="button" onclick="setConsultationType('In-Clinic Visit')" id="modeClinic" class="consult-mode-btn p-3.5 rounded-2xl border-2 border-teal-600 bg-teal-50/70 dark:bg-teal-950/60 text-left transition flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-teal-600 text-white flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-hospital"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-sm text-slate-900 dark:text-white">In-Clinic Visit</p>
+                                        <p class="text-xs text-teal-700 dark:text-teal-300 font-semibold">₹500 • Pay at Clinic</p>
+                                    </div>
+                                </button>
+
+                                <button type="button" onclick="setConsultationType('Video Consultation')" id="modeVideo" class="consult-mode-btn p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-left transition flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-sky-500 text-white flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-video"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-sm text-slate-900 dark:text-white">Video Consult</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">₹400 • WhatsApp/Zoom</p>
+                                    </div>
+                                </button>
+
+                                <button type="button" onclick="setConsultationType('Home Visit Checkup')" id="modeHome" class="consult-mode-btn p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-left transition flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center shrink-0">
+                                        <i class="fa-solid fa-house-medical"></i>
+                                    </div>
+                                    <div>
+                                        <p class="font-bold text-sm text-slate-900 dark:text-white">Senior Home Visit</p>
+                                        <p class="text-xs text-slate-500 dark:text-slate-400 font-semibold">₹900 • Within 5 KM</p>
+                                    </div>
+                                </button>
+                            </div>
+                            <input type="hidden" id="selectedMode" value="In-Clinic Visit">
+                        </div>
+
+                        <!-- Step 2: Date & Available Time Slot -->
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5">2. Preferred Date</label>
+                                <input type="date" id="appointDate" required class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-teal-500 outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-1.5">Primary Health Concern</label>
+                                <select id="appointReason" class="w-full px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-teal-500 outline-none text-sm">
+                                    <option value="General Fever / Viral Infection">General Fever / Viral / Cough</option>
+                                    <option value="Diabetes & Thyroid Management">Diabetes & Thyroid Checkup</option>
+                                    <option value="Blood Pressure & Heart Care">Blood Pressure (Hypertension)</option>
+                                    <option value="Gastric / Liver / Digestion">Stomach / Acidity / Digestion</option>
+                                    <option value="Women Wellness / Anemia">Women's Health / Weakness</option>
+                                    <option value="Full Body Preventive Checkup">Routine Full Body Checkup</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Time Slots Pills -->
+                        <div>
+                            <label class="block text-sm font-bold text-slate-700 dark:text-slate-200 mb-2">3. Select Available Time Slot</label>
+                            <div class="grid grid-cols-3 sm:grid-cols-4 gap-2.5" id="timeSlotsGrid">
+                                <!-- Populated dynamically or static interactive buttons -->
+                                <button type="button" onclick="selectSlot('09:30 AM')" class="slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-teal-600 bg-teal-600 text-white">09:30 AM</button>
+                                <button type="button" onclick="selectSlot('10:30 AM')" class="slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-teal-500">10:30 AM</button>
+                                <button type="button" onclick="selectSlot('11:30 AM')" class="slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-teal-500">11:30 AM</button>
+                                <button type="button" onclick="selectSlot('01:00 PM')" class="slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-teal-500">01:00 PM</button>
+                                <button type="button" onclick="selectSlot('05:30 PM')" class="slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-teal-500">05:30 PM</button>
+                                <button type="button" onclick="selectSlot('06:30 PM')" class="slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-teal-500">06:30 PM</button>
+                                <button type="button" onclick="selectSlot('07:30 PM')" class="slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-teal-500">07:30 PM</button>
+                                <button type="button" onclick="selectSlot('08:00 PM')" class="slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-teal-500">08:00 PM</button>
+                            </div>
+                            <input type="hidden" id="selectedTimeSlot" value="09:30 AM">
+                        </div>
+
+                        <!-- Step 4: Patient Details -->
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <div class="sm:col-span-1">
+                                <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Patient Full Name *</label>
+                                <input type="text" id="patientName" required placeholder="e.g. Rahul Verma" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-teal-500 outline-none text-sm">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Age & Gender *</label>
+                                <div class="flex gap-2">
+                                    <input type="number" id="patientAge" required min="1" max="115" placeholder="Age" class="w-20 px-3 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-teal-500 outline-none text-sm">
+                                    <select id="patientGender" class="flex-1 px-2.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-teal-500 outline-none text-sm">
+                                        <option value="Female">Female</option>
+                                        <option value="Male">Male</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Mobile Number *</label>
+                                <input type="tel" id="patientPhone" required pattern="[0-9]{10}" placeholder="10-digit Mobile" class="w-full px-3.5 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-teal-500 outline-none text-sm">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase text-slate-500 mb-1">Brief Symptoms / Notes (Optional)</label>
+                            <textarea id="patientNotes" rows="2" placeholder="Describe symptoms like fever since 2 days, headache, BP check..." class="w-full px-3.5 py-2 rounded-xl bg-white dark:bg-slate-900 border border-slate-300 dark:border-slate-700 focus:ring-2 focus:ring-teal-500 outline-none text-sm"></textarea>
+                        </div>
+
+                        <button type="submit" class="w-full py-4 rounded-2xl bg-gradient-to-r from-teal-600 to-emerald-600 hover:from-teal-700 hover:to-emerald-700 text-white font-bold shadow-lg shadow-teal-600/25 transition flex items-center justify-center gap-2 text-base">
+                            <i class="fa-solid fa-calendar-check"></i>
+                            <span>Confirm Appointment & Generate Token Slip</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Live Appointment Slip Preview & History Column -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div id="printableSlip" class="bg-white dark:bg-slate-800 rounded-3xl border-2 border-dashed border-teal-500/70 p-6 shadow-xl relative overflow-hidden">
+                        <div class="flex items-center justify-between border-b border-slate-200 dark:border-slate-700 pb-4">
+                            <div class="flex items-center gap-2.5">
+                                <div class="w-9 h-9 rounded-lg bg-teal-600 text-white flex items-center justify-center">
+                                    <i class="fa-solid fa-staff-snake"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-slate-900 dark:text-white text-sm">DR. JYOTI SHARMA CLINIC</h3>
+                                    <p class="text-[11px] text-slate-500 dark:text-slate-400">Official OPD Appointment Pass</p>
+                                </div>
+                            </div>
+                            <span id="slipStatusBadge" class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800 dark:bg-amber-950 dark:text-amber-300">
+                                Preview Pass
+                            </span>
+                        </div>
+
+                        <div class="py-5 space-y-3 text-sm">
+                            <div class="flex justify-between items-center bg-teal-50/80 dark:bg-slate-900/90 p-3 rounded-xl">
+                                <span class="text-xs uppercase font-semibold text-slate-500">Token Number</span>
+                                <span id="slipToken" class="font-mono text-lg font-extrabold text-teal-600 dark:text-teal-400">#JSC-108</span>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3 pt-1">
+                                <div>
+                                    <p class="text-xs text-slate-400">Patient Name</p>
+                                    <p id="slipName" class="font-bold text-slate-800 dark:text-white">Guest Patient</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">Consultation Type</p>
+                                    <p id="slipMode" class="font-bold text-teal-600 dark:text-teal-400">In-Clinic Visit</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">Date & Time</p>
+                                    <p id="slipDateTime" class="font-bold text-slate-800 dark:text-white">Today • 09:30 AM</p>
+                                </div>
+                                <div>
+                                    <p class="text-xs text-slate-400">Department</p>
+                                    <p id="slipReason" class="font-bold text-slate-800 dark:text-white truncate">General Medicine</p>
+                                </div>
+                            </div>
+
+                            <div class="pt-3 border-t border-slate-100 dark:border-slate-700/70 text-xs text-slate-500 dark:text-slate-400 flex items-center justify-between">
+                                <span><i class="fa-solid fa-user-check text-emerald-500 mr-1"></i> Doctor: Dr. Jyoti Sharma (MD)</span>
+                                <span>Valid for 7 Days</span>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-2 pt-2">
+                            <button onclick="window.print()" class="flex-1 py-2.5 px-3 rounded-xl bg-slate-900 dark:bg-slate-700 hover:bg-slate-800 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-solid fa-print"></i> Print / Save PDF
+                            </button>
+                            <button onclick="copyTokenDetails()" class="py-2.5 px-3 rounded-xl border border-slate-300 dark:border-slate-600 hover:bg-slate-100 dark:hover:bg-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition">
+                                <i class="fa-regular fa-copy"></i> Copy Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Saved Bookings List (LocalStorage) -->
+                    <div class="bg-slate-50 dark:bg-slate-800/40 rounded-2xl p-4 border border-slate-200 dark:border-slate-800">
+                        <div class="flex items-center justify-between mb-2">
+                            <h4 class="text-xs font-bold uppercase tracking-wider text-slate-500">Your Recent Bookings</h4>
+                            <button onclick="clearSavedBookings()" class="text-xs text-rose-500 hover:underline">Clear</button>
+                        </div>
+                        <div id="recentBookingsList" class="space-y-2 text-xs text-slate-600 dark:text-slate-300">
+                            <p class="text-slate-400 italic">No appointments booked in this session yet.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. INTERACTIVE HEALTH TOOLS & SYMPTOM TRIAGE SUITE -->
+    <section id="health-tools" class="py-16 bg-slate-100/70 dark:bg-slate-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <span class="text-teal-600 dark:text-teal-400 font-bold text-xs uppercase tracking-widest px-3 py-1 rounded-full bg-teal-100/80 dark:bg-teal-950">Smart Digital Clinic</span>
+                <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Interactive Health Tools & Symptom Checker</h2>
+                <p class="mt-2 text-slate-600 dark:text-slate-400">Apna BMI check karein, daily pani ki matra janein ya common symptoms ke aadhar par Dr. Jyoti ki primary health advice dekhein.</p>
+            </div>
+
+            <!-- Tabs Header -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button onclick="switchHealthTab('symptomTab')" id="btn-symptomTab" class="health-tab-btn px-5 py-3 rounded-2xl font-bold text-sm bg-teal-600 text-white shadow-md transition flex items-center gap-2">
+                    <i class="fa-solid fa-stethoscope"></i> 1. Quick Symptom Checker
+                </button>
+                <button onclick="switchHealthTab('bmiTab')" id="btn-bmiTab" class="health-tab-btn px-5 py-3 rounded-2xl font-bold text-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-weight-scale"></i> 2. BMI & Ideal Weight Calculator
+                </button>
+                <button onclick="switchHealthTab('waterTab')" id="btn-waterTab" class="health-tab-btn px-5 py-3 rounded-2xl font-bold text-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-2">
+                    <i class="fa-solid fa-glass-water"></i> 3. Hydration & Target Heart Rate
+                </button>
+            </div>
+
+            <!-- Tab 1: Quick Symptom Triage -->
+            <div id="symptomTab" class="health-tab-content bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-lg max-w-4xl mx-auto">
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-2">Select Your Primary Symptom for Instant First-Aid Guidance</h3>
+                <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Click on any symptom below to view Dr. Jyoti Sharma's preliminary home-care advice and red-flag signs:</p>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3 mb-6">
+                    <button onclick="analyzeSymptom('fever')" class="symptom-pill p-3 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-teal-500 text-center transition bg-slate-50 dark:bg-slate-800">
+                        <i class="fa-solid fa-temperature-high text-rose-500 text-xl mb-1"></i>
+                        <p class="text-xs font-bold">Fever & Chills</p>
+                    </button>
+                    <button onclick="analyzeSymptom('cough')" class="symptom-pill p-3 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-teal-500 text-center transition bg-slate-50 dark:bg-slate-800">
+                        <i class="fa-solid fa-lungs-virus text-amber-500 text-xl mb-1"></i>
+                        <p class="text-xs font-bold">Cough & Cold</p>
+                    </button>
+                    <button onclick="analyzeSymptom('acidity')" class="symptom-pill p-3 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-teal-500 text-center transition bg-slate-50 dark:bg-slate-800">
+                        <i class="fa-solid fa-fire-burner text-orange-500 text-xl mb-1"></i>
+                        <p class="text-xs font-bold">Acidity / Gas</p>
+                    </button>
+                    <button onclick="analyzeSymptom('headache')" class="symptom-pill p-3 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-teal-500 text-center transition bg-slate-50 dark:bg-slate-800">
+                        <i class="fa-solid fa-head-side-virus text-purple-500 text-xl mb-1"></i>
+                        <p class="text-xs font-bold">Migraine / Head</p>
+                    </button>
+                    <button onclick="analyzeSymptom('bp')" class="symptom-pill p-3 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-teal-500 text-center transition bg-slate-50 dark:bg-slate-800">
+                        <i class="fa-solid fa-heart-circle-bolt text-red-600 text-xl mb-1"></i>
+                        <p class="text-xs font-bold">High BP / Dizzy</p>
+                    </button>
+                    <button onclick="analyzeSymptom('fatigue')" class="symptom-pill p-3 rounded-2xl border border-slate-200 dark:border-slate-700 hover:border-teal-500 text-center transition bg-slate-50 dark:bg-slate-800">
+                        <i class="fa-solid fa-battery-quarter text-teal-600 text-xl mb-1"></i>
+                        <p class="text-xs font-bold">Weakness / Pain</p>
+                    </button>
+                </div>
+
+                <!-- Dynamic Symptom Advice Box -->
+                <div id="symptomAdviceBox" class="p-5 rounded-2xl bg-teal-50/90 dark:bg-slate-800 border border-teal-200 dark:border-slate-700 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div class="space-y-1.5">
+                        <span id="symTag" class="text-xs font-bold uppercase px-2.5 py-0.5 rounded-full bg-teal-600 text-white">Dr. Jyoti's Note: Fever & Viral Care</span>
+                        <h4 id="symTitle" class="text-lg font-bold text-slate-900 dark:text-white">Monitor Temperature Every 6 Hours & Stay Hydrated</h4>
+                        <p id="symText" class="text-sm text-slate-600 dark:text-slate-300">Drink plenty of ORS, coconut water, and lukewarm water. Take normal sponge baths if temperature exceeds 101°F. Avoid self-medicating with antibiotics without a blood test.</p>
+                    </div>
+                    <a href="#appointment" class="shrink-0 bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold px-4 py-3 rounded-xl shadow transition">
+                        Consult Dr. Jyoti Now →
+                    </a>
+                </div>
+            </div>
+
+            <!-- Tab 2: BMI Calculator -->
+            <div id="bmiTab" class="health-tab-content hidden bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-lg max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Body Mass Index (BMI) Calculator</h3>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Weight (in kg)</label>
+                            <input type="number" id="bmiWeight" value="62" min="15" max="250" oninput="calculateBMI()" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Height (in cm)</label>
+                            <input type="number" id="bmiHeight" value="165" min="80" max="240" oninput="calculateBMI()" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-sm">
+                        </div>
+                        <button onclick="calculateBMI()" class="w-full py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm transition">Recalculate BMI</button>
+                    </div>
+
+                    <div class="p-6 rounded-2xl bg-slate-50 dark:bg-slate-800 text-center space-y-3 border border-slate-200 dark:border-slate-700">
+                        <p class="text-xs uppercase font-bold text-slate-400">Your Calculated BMI</p>
+                        <p id="bmiScore" class="text-5xl font-extrabold text-teal-600">22.8</p>
+                        <span id="bmiCategory" class="inline-block px-4 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800">Normal Healthy Weight</span>
+                        <p id="bmiAdvice" class="text-xs text-slate-500 dark:text-slate-400 pt-2">Great job! Your weight is well balanced for your height. Maintain 30 mins of daily brisk walking.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab 3: Water Intake & Heart Rate -->
+            <div id="waterTab" class="health-tab-content hidden bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-lg max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-4">
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white">Daily Hydration & Heart Zone</h3>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Your Weight (kg)</label>
+                            <input type="number" id="waterWeight" value="60" oninput="calculateHydration()" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-sm">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold uppercase text-slate-500 mb-1">Your Age (Years)</label>
+                            <input type="number" id="heartAge" value="30" oninput="calculateHydration()" class="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-sm">
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="p-5 rounded-2xl bg-sky-50 dark:bg-slate-800 border border-sky-200 dark:border-slate-700 text-center">
+                            <i class="fa-solid fa-droplet text-sky-500 text-2xl mb-2"></i>
+                            <p class="text-xs text-slate-500">Recommended Water</p>
+                            <p id="waterOutput" class="text-2xl font-extrabold text-sky-600 mt-1">2.1 Liters / day</p>
+                            <p class="text-[11px] text-slate-400 mt-1">Approx. 8–9 Glasses</p>
+                        </div>
+                        <div class="p-5 rounded-2xl bg-rose-50 dark:bg-slate-800 border border-rose-200 dark:border-slate-700 text-center">
+                            <i class="fa-solid fa-heart-pulse text-rose-500 text-2xl mb-2"></i>
+                            <p class="text-xs text-slate-500">Target Exercise Pulse</p>
+                            <p id="heartOutput" class="text-2xl font-extrabold text-rose-600 mt-1">95 - 162 BPM</p>
+                            <p class="text-[11px] text-slate-400 mt-1">Safe Cardio Zone</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. MEDICAL SPECIALTIES & SERVICES GRID -->
+    <section id="services" class="py-16 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-teal-600 dark:text-teal-400 font-bold text-xs uppercase tracking-widest">Comprehensive Care</span>
+                    <h2 class="mt-1 text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Our Medical Specialties & Services</h2>
+                </div>
+                <p class="text-sm text-slate-500 dark:text-slate-400 max-w-md mt-2 md:mt-0">Evidence-based treatment for acute illnesses and long-term chronic lifestyle disorders under one roof.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Service 1 -->
+                <div class="group p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 hover:border-teal-500 transition shadow-sm hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-teal-600/10 text-teal-600 flex items-center justify-center text-xl mb-4 group-hover:bg-teal-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-stethoscope"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">General & Internal Medicine</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Accurate diagnosis and fast relief for viral fevers, typhoid, dengue, respiratory allergies, infections, and seasonal ailments.</p>
+                    <a href="#appointment" onclick="prefillReason('General Fever / Viral Infection')" class="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 group-hover:translate-x-1 transition">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 hover:border-teal-500 transition shadow-sm hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-rose-600/10 text-rose-600 flex items-center justify-center text-xl mb-4 group-hover:bg-rose-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-droplet"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Diabetes & Thyroid Clinic</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Personalized diet charts, HbA1c monitoring, insulin guidance, and holistic thyroid hormone balance for long-term wellness.</p>
+                    <a href="#appointment" onclick="prefillReason('Diabetes & Thyroid Management')" class="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 group-hover:translate-x-1 transition">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 hover:border-teal-500 transition shadow-sm hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-sky-600/10 text-sky-600 flex items-center justify-center text-xl mb-4 group-hover:bg-sky-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-heart-pulse"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Hypertension & Heart Care</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">In-clinic digital ECG, blood pressure stabilization, cholesterol management, and preventive cardiac screening.</p>
+                    <a href="#appointment" onclick="prefillReason('Blood Pressure & Heart Care')" class="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 group-hover:translate-x-1 transition">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 hover:border-teal-500 transition shadow-sm hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-purple-600/10 text-purple-600 flex items-center justify-center text-xl mb-4 group-hover:bg-purple-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-person-breastfeeding"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Women & Adolescent Wellness</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Compassionate care for anemia, PCOD lifestyle management, nutritional deficiencies, calcium & vitamin optimization.</p>
+                    <a href="#appointment" onclick="prefillReason('Women Wellness / Anemia')" class="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 group-hover:translate-x-1 transition">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="group p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 hover:border-teal-500 transition shadow-sm hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-amber-600/10 text-amber-600 flex items-center justify-center text-xl mb-4 group-hover:bg-amber-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-syringe"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Adult & Child Vaccination</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Annual Flu shots, Hepatitis B, Cervical Cancer (HPV) vaccines, Tetanus, and travel immunization certificates.</p>
+                    <a href="#appointment" onclick="prefillReason('Full Body Preventive Checkup')" class="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 group-hover:translate-x-1 transition">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="group p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 hover:border-teal-500 transition shadow-sm hover:shadow-xl">
+                    <div class="w-12 h-12 rounded-2xl bg-emerald-600/10 text-emerald-600 flex items-center justify-center text-xl mb-4 group-hover:bg-emerald-600 group-hover:text-white transition">
+                        <i class="fa-solid fa-microscope"></i>
+                    </div>
+                    <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Preventive Health Packages</h3>
+                    <p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Complete Blood Count (CBC), Liver, Kidney, Lipid Profile & Vitamin D/B12 master health checkup with home sample collection.</p>
+                    <a href="#appointment" onclick="prefillReason('Full Body Preventive Checkup')" class="text-xs font-bold text-teal-600 dark:text-teal-400 flex items-center gap-1 group-hover:translate-x-1 transition">Book Consultation <i class="fa-solid fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. ABOUT DR. JYOTI SHARMA & EDUCATION TIMELINE -->
+    <section id="about" class="py-16 bg-slate-50 dark:bg-slate-950 border-t border-slate-200/70 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-5">
+                    <span class="text-teal-600 dark:text-teal-400 font-bold text-xs uppercase tracking-widest">Meet Your Physician</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Dr. Jyoti Sharma: Dedicated to Ethical, Patient-First Medicine</h2>
+                    <p class="text-slate-600 dark:text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Dr. Jyoti Sharma believes that half of a patient's recovery begins when a doctor listens patiently and explains the condition clearly. With over a decade of clinical excellence in Internal Medicine, she has treated more than 15,000 families across the region.
+                    </p>
+                    <blockquote class="p-4 rounded-2xl bg-teal-50 dark:bg-slate-900 border-l-4 border-teal-600 text-sm italic text-slate-700 dark:text-slate-300">
+                        "Mera manna hai ki dawaiyon ke saath-saath sahi salah, positive soch aur healthy lifestyle har bimari ko jad se harane ki taqat rakhti hai." — <strong>Dr. Jyoti Sharma</strong>
+                    </blockquote>
+
+                    <div class="grid grid-cols-2 gap-4 pt-2">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-medal text-teal-600 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900 dark:text-white">Best Family Physician Award</h4>
+                                <p class="text-xs text-slate-500">Indian Medical Association (IMA) Chapter</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-certificate text-teal-600 text-xl mt-1"></i>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900 dark:text-white">Certified Diabetologist</h4>
+                                <p class="text-xs text-slate-500">Royal Liverpool Academy Fellowship</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Education & Career Timeline -->
+                <div class="lg:col-span-6">
+                    <div class="bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-md space-y-6">
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
+                            <i class="fa-solid fa-graduation-cap text-teal-600"></i> Academic & Clinical Journey
+                        </h3>
+
+                        <div class="relative pl-6 border-l-2 border-teal-500 space-y-6">
+                            <div class="relative">
+                                <span class="w-3.5 h-3.5 rounded-full bg-teal-600 absolute -left-[31px] top-1 border-2 border-white dark:border-slate-900"></span>
+                                <p class="text-xs font-bold text-teal-600">Present • Founder & Chief Consultant</p>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Jyoti Multispeciality & Family Clinic</h4>
+                                <p class="text-xs text-slate-500">Leading outpatient internal medicine, preventive health & tele-consultation services.</p>
+                            </div>
+                            <div class="relative">
+                                <span class="w-3.5 h-3.5 rounded-full bg-teal-600 absolute -left-[31px] top-1 border-2 border-white dark:border-slate-900"></span>
+                                <p class="text-xs font-bold text-teal-600">Senior Residency (3 Years)</p>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Department of Internal Medicine & ICU</h4>
+                                <p class="text-xs text-slate-500">Managed critical care, complex infectious diseases, and cardiac emergencies.</p>
+                            </div>
+                            <div class="relative">
+                                <span class="w-3.5 h-3.5 rounded-full bg-teal-600 absolute -left-[31px] top-1 border-2 border-white dark:border-slate-900"></span>
+                                <p class="text-xs font-bold text-teal-600">Post-Graduation (MD - Medicine)</p>
+                                <h4 class="font-bold text-slate-900 dark:text-white">Doctor of Medicine (Gold Medalist)</h4>
+                                <p class="text-xs text-slate-500">Specialized thesis on Lifestyle Reversal of Early Type-2 Diabetes.</p>
+                            </div>
+                            <div class="relative">
+                                <span class="w-3.5 h-3.5 rounded-full bg-teal-600 absolute -left-[31px] top-1 border-2 border-white dark:border-slate-900"></span>
+                                <p class="text-xs font-bold text-teal-600">Undergraduate Medical Degree</p>
+                                <h4 class="font-bold text-slate-900 dark:text-white">MBBS with Honours</h4>
+                                <p class="text-xs text-slate-500">Distinction in Anatomy, Pharmacology, and Preventive Social Medicine.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. DIGITAL PRESCRIPTION & LAB REPORT TRACKER -->
+    <section id="prescription-tracker" class="py-16 bg-gradient-to-br from-teal-900 via-teal-800 to-emerald-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-6 space-y-4">
+                    <span class="px-3 py-1 rounded-full bg-white/15 text-teal-200 text-xs font-bold uppercase tracking-wider">Paperless Digital Clinic</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold">Track Your E-Prescription & Vitals Online</h2>
+                    <p class="text-teal-100 text-sm sm:text-base">
+                        Lost your paper prescription? Enter your Patient ID below (or try demo IDs <code class="bg-black/30 px-2 py-0.5 rounded font-mono text-amber-300">PT-1024</code> or <code class="bg-black/30 px-2 py-0.5 rounded font-mono text-amber-300">PT-2048</code>) to view your latest recorded vitals, medicines, and next follow-up date.
+                    </p>
+
+                    <div class="flex flex-wrap gap-2 pt-2">
+                        <input type="text" id="rxSearchInput" value="PT-1024" placeholder="Enter Patient ID (e.g., PT-1024)" class="px-4 py-3 rounded-xl bg-white text-slate-900 font-semibold text-sm outline-none w-56">
+                        <button onclick="lookupPrescription()" class="px-6 py-3 rounded-xl bg-amber-400 hover:bg-amber-300 text-slate-950 font-bold text-sm transition">
+                            <i class="fa-solid fa-magnifying-glass mr-1"></i> View E-Record
+                        </button>
+                        <button onclick="document.getElementById('rxSearchInput').value='PT-2048'; lookupPrescription();" class="px-3.5 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-xs font-semibold">
+                            Try PT-2048
+                        </button>
+                    </div>
+                </div>
+
+                <!-- E-Prescription Card Display -->
+                <div class="lg:col-span-6">
+                    <div id="rxResultCard" class="bg-white text-slate-800 rounded-3xl p-6 shadow-2xl border border-teal-100">
+                        <!-- Populated by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. PATIENT TESTIMONIALS & FAQ -->
+    <section id="reviews" class="py-16 bg-white dark:bg-slate-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-teal-600 font-bold text-xs uppercase tracking-widest">Real Patient Stories</span>
+                <h2 class="mt-1 text-3xl font-extrabold text-slate-900 dark:text-white">Why Families Trust Dr. Jyoti Sharma</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+                <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 space-y-3">
+                    <div class="text-amber-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">"Dr. Jyoti Sharma ne meri mother ki sugar aur BP ko sirf 3 mahine me bina extra heavy medicines ke control kar diya. Unka baat karne ka tarika bohot hi shant aur parivarik hai."</p>
+                    <div class="pt-2 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-teal-600 text-white font-bold flex items-center justify-center text-xs">AK</div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900 dark:text-white">Ankit Khandelwal</p>
+                            <p class="text-[11px] text-slate-400">Verified Clinic Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 space-y-3">
+                    <div class="text-amber-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">"Late night tez bukhar hone par maine Dr. Jyoti se video consultation liya. Unhone turant digital prescription bheja aur agle din clinic team ne follow-up call bhi kiya. Highly recommended!"</p>
+                    <div class="pt-2 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-emerald-600 text-white font-bold flex items-center justify-center text-xs">PS</div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900 dark:text-white">Priya Srivastava</p>
+                            <p class="text-[11px] text-slate-400">Video Consultation Patient</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 rounded-3xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-800 space-y-3">
+                    <div class="text-amber-400 text-sm">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-sm text-slate-600 dark:text-slate-300">"Clean clinic, zero waiting time when booked online, and very genuine advice. She never prescribes unnecessary lab tests. Best family doctor in town."</p>
+                    <div class="pt-2 flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-sky-600 text-white font-bold flex items-center justify-center text-xs">RM</div>
+                        <div>
+                            <p class="text-xs font-bold text-slate-900 dark:text-white">Rajesh Mishra</p>
+                            <p class="text-[11px] text-slate-400">Regular Family Checkup</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Frequently Asked Questions Accordion -->
+            <div class="max-w-3xl mx-auto">
+                <h3 class="text-2xl font-bold text-center text-slate-900 dark:text-white mb-6">Frequently Asked Questions (FAQ)</h3>
+                <div class="space-y-3">
+                    <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(1)" class="w-full p-4 text-left font-bold text-sm flex justify-between items-center bg-slate-50 dark:bg-slate-800/70">
+                            <span>Kya online appointment book karne par clinic me line me lagna padta hai?</span>
+                            <i id="faqIcon1" class="fa-solid fa-chevron-down text-teal-600 transition"></i>
+                        </button>
+                        <div id="faqAns1" class="p-4 text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900">
+                            Nahi! Online token generate karne par aapko priority entry milti hai. Bas reception par apna Token ID (#JSC-xxx) dikhayein.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(2)" class="w-full p-4 text-left font-bold text-sm flex justify-between items-center bg-slate-50 dark:bg-slate-800/70">
+                            <span>Video Consultation ke baad prescription kaise milega?</span>
+                            <i id="faqIcon2" class="fa-solid fa-chevron-down text-teal-600 transition"></i>
+                        </button>
+                        <div id="faqAns2" class="hidden p-4 text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900">
+                            Video call khatam hote hi Dr. Jyoti Sharma ka signed Digital E-Prescription aapke WhatsApp par PDF format me bhej diya jata hai, jo har medical store par valid hai.
+                        </div>
+                    </div>
+
+                    <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                        <button onclick="toggleFaq(3)" class="w-full p-4 text-left font-bold text-sm flex justify-between items-center bg-slate-50 dark:bg-slate-800/70">
+                            <span>Follow-up checkup kab tak free rehta hai?</span>
+                            <i id="faqIcon3" class="fa-solid fa-chevron-down text-teal-600 transition"></i>
+                        </button>
+                        <div id="faqAns3" class="hidden p-4 text-sm text-slate-600 dark:text-slate-300 bg-white dark:bg-slate-900">
+                            Pehli consultation ke baad agle 7 dinon ke andar report dikhana ya follow-up salah lena bilkul nishulk (Free) hai.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. FOOTER & CLINIC CONTACT -->
+    <footer class="bg-slate-900 text-slate-300 pt-14 pb-10 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 pb-10 border-b border-slate-800">
+                <div class="space-y-3">
+                    <div class="flex items-center gap-2.5">
+                        <div class="w-9 h-9 rounded-xl bg-teal-500 text-white flex items-center justify-center">
+                            <i class="fa-solid fa-stethoscope"></i>
+                        </div>
+                        <span class="font-heading font-bold text-lg text-white">Dr. Jyoti Sharma</span>
+                    </div>
+                    <p class="text-xs text-slate-400 leading-relaxed">
+                        MBBS, MD (General Medicine). Dedicated to providing affordable, modern, and compassionate healthcare for every member of your family.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-3">Clinic Timings</h4>
+                    <ul class="space-y-1.5 text-xs text-slate-400">
+                        <li class="flex justify-between"><span>Mon – Sat (Morning):</span> <span class="text-teal-400 font-semibold">9:00 AM – 2:00 PM</span></li>
+                        <li class="flex justify-between"><span>Mon – Sat (Evening):</span> <span class="text-teal-400 font-semibold">5:00 PM – 8:30 PM</span></li>
+                        <li class="flex justify-between"><span>Sunday Special OPD:</span> <span class="text-amber-400 font-semibold">10:00 AM – 1:00 PM</span></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-3">Quick Links</h4>
+                    <ul class="space-y-1.5 text-xs text-slate-400">
+                        <li><a href="#appointment" class="hover:text-teal-400">Book OPD Token</a></li>
+                        <li><a href="#health-tools" class="hover:text-teal-400">BMI & Symptom Checker</a></li>
+                        <li><a href="#prescription-tracker" class="hover:text-teal-400">Download Lab Reports</a></li>
+                        <li><button onclick="openPrescriptionModal()" class="hover:text-teal-400">View Sample Prescription</button></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-white text-sm mb-3">Clinic Address & Helpline</h4>
+                    <p class="text-xs text-slate-400 mb-3">
+                        <i class="fa-solid fa-location-dot text-teal-400 mr-1.5"></i>
+                        Jyoti Multispeciality Clinic, Ground Floor, Harmony Plaza, Civil Lines Main Road
+                    </p>
+                    <p class="text-xs text-slate-300 font-semibold">
+                        <i class="fa-solid fa-phone text-teal-400 mr-1.5"></i> +91 98765 43210
+                    </p>
+                </div>
+            </div>
+
+            <div class="pt-6 flex flex-col sm:flex-row justify-between items-center text-xs text-slate-500 gap-4">
+                <p>&copy; 2026 Dr. Jyoti Sharma Clinic & Healthcare Portal. All rights reserved.</p>
+                <p>Designed with <i class="fa-solid fa-heart text-rose-500"></i> for Patient Care & Wellness</p>
+            </div>
+        </div>
     </footer>
 
+    <!-- SAMPLE DIGITAL PRESCRIPTION MODAL -->
+    <div id="rxModal" class="fixed inset-0 z-50 hidden bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-lg w-full p-6 border border-slate-200 dark:border-slate-800 shadow-2xl space-y-4">
+            <div class="flex justify-between items-start border-b border-slate-200 dark:border-slate-800 pb-3">
+                <div>
+                    <h3 class="font-bold text-teal-600 text-lg">Dr. Jyoti Sharma, MBBS, MD</h3>
+                    <p class="text-xs text-slate-500">Reg No: MCI-48291 • Digital Smart Prescription</p>
+                </div>
+                <button onclick="closePrescriptionModal()" class="w-8 h-8 rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center text-slate-500 hover:text-rose-500">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="text-xs space-y-2 text-slate-700 dark:text-slate-300">
+                <p><strong>Rx Advice:</strong> Sample Viral Fever & Immunity Recovery Protocol</p>
+                <ul class="list-disc pl-5 space-y-1">
+                    <li><strong>Tab. Paracetamol 650mg</strong> — 1 Tablet SOS (if fever > 100°F) after meals</li>
+                    <li><strong>Tab. Vitamin C + Zinc</strong> — Once daily after lunch for 10 days</li>
+                    <li><strong>Syp. Alkaline Steam / Warm Saline Gargles</strong> — Thrice daily</li>
+                    <li><strong>Hydration:</strong> Minimum 3 Liters of fluids / ORS daily</li>
+                </ul>
+            </div>
+            <div class="pt-3 border-t border-slate-200 dark:border-slate-800 flex justify-end">
+                <button onclick="closePrescriptionModal()" class="px-5 py-2 rounded-xl bg-teal-600 text-white text-xs font-bold">Close Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // Set default date picker to today
+        window.addEventListener('DOMContentLoaded', () => {
+            const today = new Date().toISOString().split('T')[0];
+            const dateInput = document.getElementById('appointDate');
+            if (dateInput) {
+                dateInput.value = today;
+                dateInput.min = today;
+            }
+            lookupPrescription();
+            renderSavedBookings();
+        });
+
+        // Toast Helper (Never use alert!)
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgClass = type === 'success' ? 'bg-teal-700 text-white' : 'bg-slate-800 text-white';
+            toast.className = `${bgClass} p-4 rounded-2xl shadow-xl flex items-center gap-3 text-sm font-medium pointer-events-auto border border-white/15 transition transform duration-300`;
+            toast.innerHTML = `<i class="fa-solid fa-circle-check text-emerald-300 text-lg"></i><span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 300);
+            }, 3800);
+        }
+
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            const htmlEl = document.documentElement;
+            const icon = document.getElementById('themeIcon');
+            htmlEl.classList.toggle('dark');
+            if (htmlEl.classList.contains('dark')) {
+                icon.className = 'fa-solid fa-sun';
+                showToast('Dark Mode Enabled');
+            } else {
+                icon.className = 'fa-solid fa-moon';
+                showToast('Light Mode Enabled');
+            }
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Bilingual Language Toggle (English <-> Hinglish)
+        let currentLang = 'en';
+        const translations = {
+            en: {
+                heroBadge: 'Gold Medalist Physician • Compassionate Family Healthcare',
+                heroTitle1: 'Your Trusted Partner in',
+                heroTitle2: 'Complete Health & Wellness',
+                heroDesc: 'Hello! I am <strong>Dr. Jyoti Sharma</strong> (MBBS, MD). Our clinic is dedicated to providing accurate diagnosis, modern evidence-based treatment, and compassionate family care—both in-clinic and via video consultation.',
+                bookBtn: 'Book Appointment',
+                bookingHeading: 'Book Your Appointment with Dr. Jyoti Sharma',
+                bookingSub: 'Choose In-Clinic Visit or Video Consultation and receive an instant confirmed OPD Token Pass.'
+            },
+            hi: {
+                heroBadge: 'Gold Medalist Doctor • Aapke Parivar Ki Bharosemand Swasthya Seva',
+                heroTitle1: 'Aapki Sehat Aur Khushhali Ki',
+                heroTitle2: 'Sabse Bharosemand Sathi',
+                heroDesc: 'Namaste! Main <strong>Dr. Jyoti Sharma</strong> (MBBS, MD) hu. Hamare clinic ka lakshya har patient ko sahi diagnosis, modern ilaj aur parivarik dekhbhal dena hai—chahe aap clinic aayein ya ghar baithe video consultation lein.',
+                bookBtn: 'Appointment Book Karein',
+                bookingHeading: 'Dr. Jyoti Sharma Ke Saath Appointment Book Karein',
+                bookingSub: 'Apni suvidha ke anusar Clinic Visit ya Video Consultation chunein aur turant Confirm Token Slip prapt karein.'
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'hi' : 'en';
+            document.getElementById('langLabel').textContent = currentLang === 'en' ? 'Hinglish / हिंदी' : 'Switch to English';
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
+            });
+            showToast(currentLang === 'hi' ? 'Hinglish bhasha chuni gayi hai!' : 'Switched to English language');
+        }
+
+        // Consultation Mode Selection
+        function setConsultationType(mode) {
+            document.getElementById('selectedMode').value = mode;
+            document.getElementById('slipMode').textContent = mode;
+            const buttons = {
+                'In-Clinic Visit': document.getElementById('modeClinic'),
+                'Video Consultation': document.getElementById('modeVideo'),
+                'Home Visit Checkup': document.getElementById('modeHome')
+            };
+            Object.keys(buttons).forEach(key => {
+                if (key === mode) {
+                    buttons[key].className = 'consult-mode-btn p-3.5 rounded-2xl border-2 border-teal-600 bg-teal-50/70 dark:bg-teal-950/60 text-left transition flex items-center gap-3';
+                } else {
+                    buttons[key].className = 'consult-mode-btn p-3.5 rounded-2xl border-2 border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800 text-left transition flex items-center gap-3';
+                }
+            });
+        }
+
+        // Time Slot Selection
+        function selectSlot(slotTime) {
+            document.getElementById('selectedTimeSlot').value = slotTime;
+            const dateVal = document.getElementById('appointDate').value || 'Today';
+            document.getElementById('slipDateTime').textContent = `${dateVal} • ${slotTime}`;
+            document.querySelectorAll('.slot-btn').forEach(btn => {
+                if (btn.textContent.trim() === slotTime) {
+                    btn.className = 'slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-teal-600 bg-teal-600 text-white shadow-sm';
+                } else {
+                    btn.className = 'slot-btn py-2 px-3 rounded-xl text-xs font-semibold border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 hover:border-teal-500';
+                }
+            });
+        }
+
+        function prefillReason(reason) {
+            const select = document.getElementById('appointReason');
+            if (select) select.value = reason;
+        }
+
+        // Handle Appointment Form Submission
+        function handleAppointmentSubmit(e) {
+            e.preventDefault();
+            const name = document.getElementById('patientName').value.trim();
+            const age = document.getElementById('patientAge').value;
+            const gender = document.getElementById('patientGender').value;
+            const mode = document.getElementById('selectedMode').value;
+            const date = document.getElementById('appointDate').value;
+            const slot = document.getElementById('selectedTimeSlot').value;
+            const reason = document.getElementById('appointReason').value;
+            const token = '#JSC-' + Math.floor(100 + Math.random() * 900);
+
+            // Update Live Confirmation Slip
+            document.getElementById('slipToken').textContent = token;
+            document.getElementById('slipName').textContent = `${name} (${age}y, ${gender[0]})`;
+            document.getElementById('slipMode').textContent = mode;
+            document.getElementById('slipDateTime').textContent = `${date} • ${slot}`;
+            document.getElementById('slipReason').textContent = reason;
+
+            const badge = document.getElementById('slipStatusBadge');
+            badge.textContent = 'Confirmed Pass ✓';
+            badge.className = 'px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 dark:bg-emerald-950 dark:text-emerald-300';
+
+            // Save to session list
+            const saved = JSON.parse(localStorage.getItem('drJyotiBookings') || '[]');
+            saved.unshift({ token, name, mode, date, slot });
+            localStorage.setItem('drJyotiBookings', JSON.stringify(saved.slice(0, 4)));
+            renderSavedBookings();
+
+            showToast(`Appointment Confirmed for ${name}! Token: ${token}`);
+        }
+
+        function renderSavedBookings() {
+            const listEl = document.getElementById('recentBookingsList');
+            const saved = JSON.parse(localStorage.getItem('drJyotiBookings') || '[]');
+            if (saved.length === 0) {
+                listEl.innerHTML = '<p class="text-slate-400 italic">No appointments booked in this session yet.</p>';
+                return;
+            }
+            listEl.innerHTML = saved.map(item => `
+                <div class="flex justify-between items-center p-2 rounded-lg bg-white dark:bg-slate-900 border border-slate-200/70 dark:border-slate-700">
+                    <div>
+                        <span class="font-bold text-teal-600">${item.token}</span> • <span class="font-semibold">${item.name}</span>
+                        <span class="block text-[11px] text-slate-400">${item.mode}</span>
+                    </div>
+                    <span class="text-[11px] font-medium bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">${item.date} (${item.slot})</span>
+                </div>
+            `).join('');
+        }
+
+        function clearSavedBookings() {
+            localStorage.removeItem('drJyotiBookings');
+            renderSavedBookings();
+            showToast('Cleared booking history');
+        }
+
+        function copyTokenDetails() {
+            const token = document.getElementById('slipToken').textContent;
+            const name = document.getElementById('slipName').textContent;
+            const dt = document.getElementById('slipDateTime').textContent;
+            const textToCopy = `Dr. Jyoti Sharma Clinic Appointment | Token: ${token} | Patient: ${name} | Slot: ${dt}`;
+            const tempInput = document.createElement('textarea');
+            tempInput.value = textToCopy;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('Appointment Token details copied to clipboard!');
+        }
+
+        // Health Tools Tab Switcher
+        function switchHealthTab(tabId) {
+            document.querySelectorAll('.health-tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(tabId).classList.remove('hidden');
+
+            document.querySelectorAll('.health-tab-btn').forEach(btn => {
+                btn.className = 'health-tab-btn px-5 py-3 rounded-2xl font-bold text-sm bg-white dark:bg-slate-800 text-slate-700 dark:text-slate-200 border border-slate-200 dark:border-slate-700 transition flex items-center gap-2';
+            });
+            document.getElementById('btn-' + tabId).className = 'health-tab-btn px-5 py-3 rounded-2xl font-bold text-sm bg-teal-600 text-white shadow-md transition flex items-center gap-2';
+        }
+
+        // Symptom Triage Analyzer
+        const symptomDatabase = {
+            fever: {
+                tag: 'Viral Fever & Temperature Care',
+                title: 'Monitor Temperature Every 6 Hours & Stay Hydrated',
+                text: 'Take plenty of ORS, coconut water, and light home-cooked dal/khichdi. Use normal tap-water forehead sponging if fever exceeds 101°F. Book a clinic visit if fever persists beyond 48 hours.'
+            },
+            cough: {
+                tag: 'Respiratory & Throat Care',
+                title: 'Warm Saline Gargles & Steam Inhalation Twice Daily',
+                text: 'Avoid chilled water, curd, and fried snacks. Honey with warm ginger water helps soothe dry throat irritation. If accompanied by breathlessness, consult Dr. Jyoti immediately.'
+            },
+            acidity: {
+                tag: 'Digestive & Gastric Relief',
+                title: 'Eat Small Frequent Meals & Avoid Late-Night Spicy Food',
+                text: 'Take a 15-minute slow walk after meals and elevate your head slightly while sleeping. Cold milk or buttermilk (chaas) provides natural stomach cooling.'
+            },
+            headache: {
+                tag: 'Headache & Migraine Care',
+                title: 'Rest in a Quiet Dark Room & Check Blood Pressure',
+                text: 'Dehydration and screen eye-strain trigger 60% of headaches. Drink 2 glasses of water and relax your neck muscles. Get your BP and eye power checked if headaches occur frequently.'
+            },
+            bp: {
+                tag: 'Blood Pressure & Cardiac Alert',
+                title: 'Sit Calmly, Practice Deep Breathing & Reduce Salt Intake',
+                text: 'Do not skip your regular morning BP tablet. If your reading is above 150/95 mmHg with dizziness or chest heaviness, visit the clinic immediately for an ECG check.'
+            },
+            fatigue: {
+                tag: 'Weakness & Nutritional Care',
+                title: 'Check Hemoglobin, Vitamin D3, B12 & Thyroid Profile',
+                text: 'Chronic tiredness is often linked to iron deficiency anemia, low Vitamin D, or borderline thyroid imbalance. Include dates, almonds, green leafy vegetables, and protein in your daily diet.'
+            }
+        };
+
+        function analyzeSymptom(key) {
+            const info = symptomDatabase[key];
+            if (!info) return;
+            document.getElementById('symTag').textContent = `Dr. Jyoti's Advice: ${info.tag}`;
+            document.getElementById('symTitle').textContent = info.title;
+            document.getElementById('symText').textContent = info.text;
+        }
+
+        // BMI Calculator
+        function calculateBMI() {
+            const w = parseFloat(document.getElementById('bmiWeight').value) || 60;
+            const hCm = parseFloat(document.getElementById('bmiHeight').value) || 165;
+            const hM = hCm / 100;
+            const bmi = (w / (hM * hM)).toFixed(1);
+            document.getElementById('bmiScore').textContent = bmi;
+
+            const catEl = document.getElementById('bmiCategory');
+            const advEl = document.getElementById('bmiAdvice');
+
+            if (bmi < 18.5) {
+                catEl.textContent = 'Underweight (Needs Nutrition)';
+                catEl.className = 'inline-block px-4 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-800';
+                advEl.textContent = 'Dr. Jyoti recommends a protein-rich diet with milk, paneer, sprouts, and a complete vitamin checkup.';
+            } else if (bmi <= 24.9) {
+                catEl.textContent = 'Normal Healthy Weight ✓';
+                catEl.className = 'inline-block px-4 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800';
+                advEl.textContent = 'Great job! Your weight is well balanced for your height. Maintain 30 mins of daily brisk walking.';
+            } else if (bmi <= 29.9) {
+                catEl.textContent = 'Overweight (Borderline)';
+                catEl.className = 'inline-block px-4 py-1 rounded-full text-xs font-bold bg-orange-100 text-orange-800';
+                advEl.textContent = 'Reduce refined sugar and evening fried snacks. Aim for 45 minutes of daily cardio walk.';
+            } else {
+                catEl.textContent = 'Obesity Care Recommended';
+                catEl.className = 'inline-block px-4 py-1 rounded-full text-xs font-bold bg-rose-100 text-rose-800';
+                advEl.textContent = 'Book a Metabolic & Thyroid consultation with Dr. Jyoti Sharma for a customized weight-loss plan.';
+            }
+        }
+
+        // Hydration & Heart Zone Calculator
+        function calculateHydration() {
+            const weight = parseFloat(document.getElementById('waterWeight').value) || 60;
+            const age = parseFloat(document.getElementById('heartAge').value) || 30;
+            const liters = (weight * 0.035).toFixed(1);
+            const maxHr = 220 - age;
+            const lowZone = Math.round(maxHr * 0.5);
+            const highZone = Math.round(maxHr * 0.85);
+
+            document.getElementById('waterOutput').textContent = `${liters} Liters / day`;
+            document.getElementById('heartOutput').textContent = `${lowZone} - ${highZone} BPM`;
+        }
+
+        // Digital Prescription Lookup
+        const sampleRecords = {
+            'PT-1024': {
+                name: 'Smt. Kavita Verma (44 yrs)',
+                date: 'Recent Visit • Verified by Dr. Jyoti Sharma',
+                vitals: 'BP: 122/78 mmHg | Pulse: 74 bpm | SpO2: 99% | Fasting Sugar: 98 mg/dL',
+                diagnosis: 'Seasonal Allergic Rhinitis & Mild Vitamin D Deficiency',
+                medicines: [
+                    'Tab. Montelukast + Levocetirizine — 1 Tab at bedtime (5 Days)',
+                    'Cap. Cholecalciferol 60,000 IU — Once a week with milk (8 Weeks)',
+                    'Steam Inhalation twice daily & avoid cold beverages'
+                ],
+                nextVisit: 'Follow-up after 14 days (Free Vitals Review)'
+            },
+            'PT-2048': {
+                name: 'Shri Rameshwar Gupta (58 yrs)',
+                date: 'Routine Diabetes & Lipid Review',
+                vitals: 'BP: 128/82 mmHg | HbA1c: 6.4% (Good Control) | Weight: 71 kg',
+                diagnosis: 'Type-2 Diabetes Mellitus (Well Controlled on Lifestyle + Oral Meds)',
+                medicines: [
+                    'Tab. Metformin SR 500mg — 1 Tab before breakfast & dinner',
+                    'Tab. Atorvastatin 10mg — 1 Tab at night after dinner',
+                    '40 mins morning brisk walk + high-fiber millet rotis'
+                ],
+                nextVisit: 'Next HbA1c check after 3 Months'
+            }
+        };
+
+        function lookupPrescription() {
+            const code = document.getElementById('rxSearchInput').value.trim().toUpperCase();
+            const record = sampleRecords[code] || sampleRecords['PT-1024'];
+            const card = document.getElementById('rxResultCard');
+
+            card.innerHTML = `
+                <div class="flex justify-between items-start border-b border-slate-200 pb-3 mb-3">
+                    <div>
+                        <span class="text-[11px] font-bold uppercase px-2 py-0.5 rounded bg-teal-100 text-teal-800">Record ID: ${sampleRecords[code] ? code : 'PT-1024 (Demo)'}</span>
+                        <h4 class="text-lg font-extrabold text-slate-900 mt-1">${record.name}</h4>
+                        <p class="text-xs text-slate-500">${record.date}</p>
+                    </div>
+                    <i class="fa-solid fa-file-medical text-teal-600 text-2xl"></i>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-100 text-xs font-semibold text-slate-700 mb-3">
+                    <i class="fa-solid fa-heart-pulse text-rose-500 mr-1"></i> ${record.vitals}
+                </div>
+                <p class="text-xs font-bold text-slate-800 mb-1">Diagnosis: <span class="font-normal text-teal-700">${record.diagnosis}</span></p>
+                <ul class="text-xs text-slate-600 space-y-1 list-disc pl-4 mb-3">
+                    ${record.medicines.map(m => `<li>${m}</li>`).join('')}
+                </ul>
+                <div class="flex justify-between items-center pt-2 border-t border-slate-200 text-xs">
+                    <span class="text-emerald-700 font-bold"><i class="fa-regular fa-calendar-check mr-1"></i>${record.nextVisit}</span>
+                    <button onclick="window.print()" class="text-teal-600 font-bold hover:underline"><i class="fa-solid fa-download mr-1"></i>Print Rx</button>
+                </div>
+            `;
+        }
+
+        // FAQ Accordion
+        function toggleFaq(num) {
+            const ans = document.getElementById('faqAns' + num);
+            const icon = document.getElementById('faqIcon' + num);
+            ans.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // Sample Prescription Modal
+        function openPrescriptionModal() {
+            document.getElementById('rxModal').classList.remove('hidden');
+        }
+        function closePrescriptionModal() {
+            document.getElementById('rxModal').classList.add('hidden');
+        }
+    </script>
 </body>
 </html>
